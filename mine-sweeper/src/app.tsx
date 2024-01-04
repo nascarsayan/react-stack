@@ -134,7 +134,11 @@ export function App() {
                       style={{
                         cursor: (cell.isRevealed || isGameOver)
                           ? "default"
-                          : "pointer"
+                          : "pointer",
+
+                        backgroundColor: (cell.isRevealed || isGameOver)
+                          ? "#fff"
+                          : "#0ba"
                       }}
                       onClick={
                         () => handleCellClick(i, j)
