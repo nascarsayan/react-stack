@@ -5,6 +5,7 @@ import './app.css'
 type Cell = {
   isMine: boolean
   mineCount?: number
+  isRevealed: boolean
 }
 
 export function App() {
@@ -47,7 +48,8 @@ export function App() {
       for (let j = 0; j < numCols; j++) {
         let isMine = mineCells.includes(i * numCols + j)
         currRow.push({
-          isMine
+          isMine,
+          isRevealed: false
         })
       }
 
@@ -84,17 +86,36 @@ export function App() {
     setBoard(newBoard)
   }
 
+  function handleCellClick(i: number, j: number) {
+    let newBoard = [...board]
+    newBoard[i][j].isRevealed = true
+    setBoard(newBoard)
+  }
+
+  function display(cell: Cell) {
+    if (!cell.isRevealed) return "";
+    if (cell.isMine) return "💣";
+    return cell.mineCount || 0;
+  }
+
   return (
     <div id="app">
       {
         board.map(
-          row => (
+          (row, i) => (
             <div className="row">
               {
                 row.map(
-                  cell => <div className="cell">
-                    { cell.isMine ? '💣' : cell.mineCount }
-                  </div>
+                  (cell, j) => (
+                    <div
+                      className="cell"
+                      onClick={
+                        () => handleCellClick(i, j)
+                      }
+                      >
+                      { display(cell) }
+                    </div>
+                  )
                 )
               }
             </div>
