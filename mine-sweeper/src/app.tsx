@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 
 import './app.css'
 
@@ -9,6 +9,10 @@ type Cell = {
 export function App() {
 
   const [board, setBoard] = useState<Array<Array<Cell>>>([])
+
+  useEffect(() => {
+    createBoard()
+  }, [])
 
   let numRows = 8
   let numCols = 10
@@ -50,22 +54,22 @@ export function App() {
     setBoard(newBoard)
   }
 
-  function getRow() {
-    return (
-      <div className="row">
-        {
-          new Array(numCols).fill(0).map(
-            _ => <div className="cell"> * </div>
-          )
-        }
-      </div>
-    )
-  }
-
   return (
     <div id="app">
       {
-        new Array(numRows).fill(0).map(_ => getRow())
+        board.map(
+          row => (
+            <div className="row">
+              {
+                row.map(
+                  cell => <div className="cell">
+                    {cell.isMine ? '💣' : '_'}
+                  </div>
+                )
+              }
+            </div>
+          )
+        )
       }
     </div>
   )
