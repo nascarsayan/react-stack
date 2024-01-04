@@ -26,6 +26,7 @@
 
 .row {
   display: flex;
+  /* cursor: pointer; */
 }
 
 .cell {

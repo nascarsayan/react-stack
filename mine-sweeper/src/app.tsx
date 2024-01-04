@@ -12,6 +12,8 @@ export function App() {
 
   const [board, setBoard] = useState<Array<Array<Cell>>>([])
 
+  const [isGameOver, setIsGameOver] = useState<boolean>(false)
+
   useEffect(() => {
     createBoard()
   }, [])
@@ -87,13 +89,33 @@ export function App() {
   }
 
   function handleCellClick(i: number, j: number) {
+
+    if (isGameOver) return;
+
     let newBoard = [...board]
     newBoard[i][j].isRevealed = true
+
+    if (newBoard[i][j].isMine) {
+      alert("Game over!")
+
+      // Method 1
+      // for (let i = 0; i < numRows; i++) {
+      //   for (let j = 0; j < numCols; j++) {
+      //     newBoard[i][j].isRevealed = true
+      //   }
+      // }
+
+      setIsGameOver(true);      
+    }
+
     setBoard(newBoard)
   }
 
   function display(cell: Cell) {
-    if (!cell.isRevealed) return "";
+    // if (!cell.isRevealed) return "";
+
+    // method 2: use isGameOver
+    if (!isGameOver && !cell.isRevealed) return "";
     if (cell.isMine) return "💣";
     return cell.mineCount || 0;
   }
@@ -109,6 +131,11 @@ export function App() {
                   (cell, j) => (
                     <div
                       className="cell"
+                      style={{
+                        cursor: (cell.isRevealed || isGameOver)
+                          ? "default"
+                          : "pointer"
+                      }}
                       onClick={
                         () => handleCellClick(i, j)
                       }
