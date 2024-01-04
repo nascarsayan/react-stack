@@ -4,6 +4,7 @@ import './app.css'
 
 type Cell = {
   isMine: boolean
+  mineCount?: number
 }
 
 export function App() {
@@ -45,10 +46,39 @@ export function App() {
       let currRow: Array<Cell> = []
       for (let j = 0; j < numCols; j++) {
         let isMine = mineCells.includes(i * numCols + j)
-        currRow.push({ isMine })
+        currRow.push({
+          isMine
+        })
       }
 
       newBoard.push(currRow)
+    }
+
+    for (let i = 0; i < numRows; i++) {
+      for (let j = 0; j < numCols; j++) {
+        if (newBoard[i][j].isMine) {
+          continue
+        }
+
+        let mineCount = 0
+        for (let di = -1; di <= 1; di++) {
+          for (let dj = -1; dj <= 1; dj++) {
+            let [newI, newJ] = [i + di, j + dj]
+            if (
+              newI < 0 || newI >= numRows ||
+              newJ < 0 || newJ >= numCols
+            ) {
+              continue
+            }
+            
+            if (newBoard[newI][newJ].isMine) {
+              mineCount++
+            }
+          }
+        }
+
+        newBoard[i][j].mineCount = mineCount
+      }
     }
 
     setBoard(newBoard)
@@ -63,7 +93,7 @@ export function App() {
               {
                 row.map(
                   cell => <div className="cell">
-                    {cell.isMine ? '💣' : '_'}
+                    { cell.isMine ? '💣' : cell.mineCount }
                   </div>
                 )
               }
