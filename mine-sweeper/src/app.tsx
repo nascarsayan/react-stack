@@ -88,12 +88,29 @@ export function App() {
     setBoard(newBoard)
   }
 
+  // Flood fill algorithm
+  function revealRecursive(i: number, j: number, board: Cell[][]) {
+    if (i < 0 || j < 0 || i >= numRows || j >= numCols) return;
+    if (board[i][j].isMine) return;
+    if (board[i][j].isRevealed) return;
+
+    board[i][j].isRevealed = true;
+    if (board[i][j].mineCount != 0) return;
+
+    for (let di = -1; di <= 1; di++) {
+      for (let dj = -1; dj <= 1; dj++) {
+        // Below condition not required
+        // if (di == 0 && dj == 0) continue;
+        revealRecursive(i+di, j+dj, board)
+      }
+    }
+  }
+
   function handleCellClick(i: number, j: number) {
 
     if (isGameOver) return;
 
     let newBoard = [...board]
-    newBoard[i][j].isRevealed = true
 
     if (newBoard[i][j].isMine) {
       alert("Game over!")
@@ -106,7 +123,13 @@ export function App() {
       // }
 
       setIsGameOver(true);      
+    } else {
+      if (newBoard[i][j].mineCount == 0) {
+        revealRecursive(i, j, newBoard)
+      }
     }
+
+    newBoard[i][j].isRevealed = true
 
     setBoard(newBoard)
   }
