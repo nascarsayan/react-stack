@@ -6,6 +6,7 @@ type Cell = {
   isMine: boolean
   mineCount?: number
   isRevealed: boolean
+  isFlagged: boolean
 }
 
 export function App() {
@@ -51,7 +52,8 @@ export function App() {
         let isMine = mineCells.includes(i * numCols + j)
         currRow.push({
           isMine,
-          isRevealed: false
+          isRevealed: false,
+          isFlagged: false
         })
       }
 
@@ -116,7 +118,19 @@ export function App() {
     return true
   }
 
-  function handleCellClick(i: number, j: number) {
+  function handleCellClick(event: MouseEvent, i: number, j: number) {
+    event.preventDefault();
+
+    if (event.button == 2) {
+      // right click event
+      let newBoard = [...board]
+      newBoard[i][j].isFlagged = !newBoard[i][j].isFlagged
+      setBoard(newBoard)
+      return
+    }
+
+    // left click event
+    if (board[i][j].isFlagged) return
 
     if (isGameDone) return;
 
@@ -155,9 +169,26 @@ export function App() {
     // if (!cell.isRevealed) return "";
 
     // method 2: use isGameOver
-    if (!isGameDone && !cell.isRevealed) return "";
+    if (!isGameDone && !cell.isRevealed) {
+      if (cell.isFlagged) return "🚩";
+      return "";
+    }
     if (cell.isMine) return "💣";
-    return cell.mineCount || 0;
+    if (cell.mineCount == 0) return ""
+    return cell.mineCount;
+  }
+
+  function getBgColor(cell: Cell) {
+    if (cell.isRevealed || isGameDone) {
+
+      if (cell.isMine) {
+        return "#fe1100"
+      }
+
+      return "#DEB887"
+
+    }
+    return "#0ba"
   }
 
   return (
@@ -176,12 +207,13 @@ export function App() {
                           ? "default"
                           : "pointer",
 
-                        backgroundColor: (cell.isRevealed || isGameDone)
-                          ? "#fff"
-                          : "#0ba"
+                        backgroundColor: getBgColor(cell)
                       }}
+                      onContextMenu={
+                        (event) => handleCellClick(event, i, j)
+                      }
                       onClick={
-                        () => handleCellClick(i, j)
+                        (event) => handleCellClick(event, i, j)
                       }
                       >
                       { display(cell) }
