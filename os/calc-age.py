@@ -25,7 +25,6 @@ for d in data:
 # import threading
 
 
-
 # threads = []
 # for d in data:
 #     t = threading.Thread(target=calcAge, args=(d,))
@@ -33,18 +32,23 @@ for d in data:
 #     t.start()
 
 # ----------
-    
+
 # Numnber of threads should be some constant multiplier of the number of cores
 
-import threading
+# import threading
 
 numThreads = 8
-for i in range(0, len(data), numThreads):
-    threads = []
-    for d in data[i:i+numThreads]:
-        t = threading.Thread(target=calcAge, args=(d,)) # overhead
-        threads.append(t)
-        t.start() # overhead
-    for t in threads:
-        t.join() # overhead
+# for i in range(0, len(data), numThreads):
+#     threads = []
+#     for d in data[i:i+numThreads]:
+#         t = threading.Thread(target=calcAge, args=(d,)) # overhead
+#         threads.append(t)
+#         t.start() # overhead
+#     for t in threads:
+#         t.join() # overhead
 
+from multiprocessing import Pool
+
+for i in range(0, len(data), numThreads):
+    with Pool(numThreads) as p:
+        p.map(calcAge, data[i:i+numThreads])
