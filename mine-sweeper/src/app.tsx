@@ -12,20 +12,37 @@ type Cell = {
 type MineSweeperProps = {
   numRows: number
   numCols: number
+  difficulty: Difficulty
 }
 
 // MineSweeper is a JSX component
-function MineSweeper({ numRows, numCols }: MineSweeperProps) {
+function MineSweeper({ numRows, numCols, difficulty }: MineSweeperProps) {
   const [board, setBoard] = useState<Array<Array<Cell>>>([])
 
   const [isGameDone, setIsGameDone] = useState<boolean>(false)
 
   useEffect(() => {
     createBoard()
-  }, [ numCols, numRows ])
+  }, [ numCols, numRows, difficulty ])
 
   function getMineCells() {
-    let totalMines = 2 // (numRows * numCols) / 6
+
+    let mineRatio = 1;
+    switch (difficulty) {
+      case Difficulty.easy:
+        mineRatio = 0.1;
+        break;
+      case Difficulty.medium:
+        mineRatio = 0.2;
+        break;
+      case Difficulty.hard:
+        mineRatio = 0.3;
+        break;
+      default:
+        break;
+    }
+
+    let totalMines = Math.ceil((numRows * numCols) * mineRatio);
 
     let allCells = (new Array(numRows * numCols)).fill(0).map(
       (_, i) => i
@@ -44,6 +61,9 @@ function MineSweeper({ numRows, numCols }: MineSweeperProps) {
   }
 
   function createBoard() {
+
+    setIsGameDone(false)
+
     let mineCells = getMineCells()
 
     let newBoard: Array<Array<Cell>> = []
@@ -242,7 +262,7 @@ export function App() {
   const [rows, setRows] = useState<number>(4)
   const [cols, setCols] = useState<number>(6)
 
-  // const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.easy)
+  const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.easy)
 
   return (
     <div id="app">
@@ -255,13 +275,21 @@ export function App() {
           (event) => setCols(parseInt(event.currentTarget.value))
         } />
         <label for="user-cols">Columns</label>
-        {/* <input id="user-difficulty" type="range" min="1" max="3" value={cols} onChange={
-          (event) => setCols(parseInt(event.currentTarget.value))
-        } />
-        <label for="user-difficulty">Difficulty</label> */}
+
+        <select
+          id="user-difficulty"
+          value={difficulty}
+          onChange={
+            (event) => setDifficulty(event.currentTarget.value as Difficulty)
+          }
+          >
+          <option value="easy" >Easy</option>
+          <option value="medium" >Medium</option>
+          <option value="hard" >Hard</option>
+        </select>
 
       </form>
-      <MineSweeper numRows={rows} numCols={cols} />
+      <MineSweeper numRows={rows} numCols={cols} difficulty={difficulty} />
     </div>
   )
 }

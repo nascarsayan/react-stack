@@ -42,6 +42,12 @@
   padding: 0.5em;
 }
 
+#user-difficulty {
+  margin: 0 1em;
+  width: 7em;
+  padding: 0.5em;
+}
+
 .board-form {
   display: flex;
   justify-content: center;
