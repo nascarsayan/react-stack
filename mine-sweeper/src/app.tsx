@@ -12,17 +12,17 @@ export function App() {
 
   const [board, setBoard] = useState<Array<Array<Cell>>>([])
 
-  const [isGameOver, setIsGameOver] = useState<boolean>(false)
+  const [isGameDone, setIsGameDone] = useState<boolean>(false)
 
   useEffect(() => {
     createBoard()
   }, [])
 
-  let numRows = 8
-  let numCols = 10
+  let numRows = 4
+  let numCols = 4
 
   function getMineCells() {
-    let totalMines = 8 // (numRows * numCols) / 6
+    let totalMines = 2 // (numRows * numCols) / 6
 
     let allCells = (new Array(numRows * numCols)).fill(0).map(
       (_, i) => i
@@ -106,9 +106,19 @@ export function App() {
     }
   }
 
+  function isGameWon(board: Cell[][]) {
+    for (let i = 0; i < numRows; i++) {
+      for (let j = 0; j < numCols; j++) {
+        if (board[i][j].isRevealed) continue
+        if (!board[i][j].isMine) return false
+      }
+    }
+    return true
+  }
+
   function handleCellClick(i: number, j: number) {
 
-    if (isGameOver) return;
+    if (isGameDone) return;
 
     let newBoard = [...board]
 
@@ -122,14 +132,21 @@ export function App() {
       //   }
       // }
 
-      setIsGameOver(true);      
+      setIsGameDone(true);      
     } else {
       if (newBoard[i][j].mineCount == 0) {
         revealRecursive(i, j, newBoard)
       }
+
     }
 
     newBoard[i][j].isRevealed = true
+
+    let hasWon = isGameWon(newBoard)
+    if (hasWon) {
+      alert("You've won! 🎉")
+      setIsGameDone(true)
+    }
 
     setBoard(newBoard)
   }
@@ -138,7 +155,7 @@ export function App() {
     // if (!cell.isRevealed) return "";
 
     // method 2: use isGameOver
-    if (!isGameOver && !cell.isRevealed) return "";
+    if (!isGameDone && !cell.isRevealed) return "";
     if (cell.isMine) return "💣";
     return cell.mineCount || 0;
   }
@@ -155,11 +172,11 @@ export function App() {
                     <div
                       className="cell"
                       style={{
-                        cursor: (cell.isRevealed || isGameOver)
+                        cursor: (cell.isRevealed || isGameDone)
                           ? "default"
                           : "pointer",
 
-                        backgroundColor: (cell.isRevealed || isGameOver)
+                        backgroundColor: (cell.isRevealed || isGameDone)
                           ? "#fff"
                           : "#0ba"
                       }}
