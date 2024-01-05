@@ -9,18 +9,20 @@ type Cell = {
   isFlagged: boolean
 }
 
-export function App() {
+type MineSweeperProps = {
+  numRows: number
+  numCols: number
+}
 
+// MineSweeper is a JSX component
+function MineSweeper({ numRows, numCols }: MineSweeperProps) {
   const [board, setBoard] = useState<Array<Array<Cell>>>([])
 
   const [isGameDone, setIsGameDone] = useState<boolean>(false)
 
   useEffect(() => {
     createBoard()
-  }, [])
-
-  let numRows = 4
-  let numCols = 4
+  }, [ numCols, numRows ])
 
   function getMineCells() {
     let totalMines = 2 // (numRows * numCols) / 6
@@ -76,7 +78,7 @@ export function App() {
             ) {
               continue
             }
-            
+
             if (newBoard[newI][newJ].isMine) {
               mineCount++
             }
@@ -103,7 +105,7 @@ export function App() {
       for (let dj = -1; dj <= 1; dj++) {
         // Below condition not required
         // if (di == 0 && dj == 0) continue;
-        revealRecursive(i+di, j+dj, board)
+        revealRecursive(i + di, j + dj, board)
       }
     }
   }
@@ -146,7 +148,7 @@ export function App() {
       //   }
       // }
 
-      setIsGameDone(true);      
+      setIsGameDone(true);
     } else {
       if (newBoard[i][j].mineCount == 0) {
         revealRecursive(i, j, newBoard)
@@ -192,7 +194,7 @@ export function App() {
   }
 
   return (
-    <div id="app">
+    <>
       {
         board.map(
           (row, i) => (
@@ -215,8 +217,8 @@ export function App() {
                       onClick={
                         (event) => handleCellClick(event, i, j)
                       }
-                      >
-                      { display(cell) }
+                    >
+                      {display(cell)}
                     </div>
                   )
                 )
@@ -225,6 +227,41 @@ export function App() {
           )
         )
       }
+    </>
+  )
+}
+
+enum Difficulty {
+  easy = "easy",
+  medium = "medium",
+  hard = "hard"
+}
+
+export function App() {
+
+  const [rows, setRows] = useState<number>(4)
+  const [cols, setCols] = useState<number>(6)
+
+  // const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.easy)
+
+  return (
+    <div id="app">
+      <form class="board-form">
+        <input type="number" value={rows} id="user-rows" onChange={
+          (event) => setRows(parseInt(event.currentTarget.value))
+        } />
+        <label for="user-rows">Rows</label>
+        <input type="number" value={cols} id="user-cols" onChange={
+          (event) => setCols(parseInt(event.currentTarget.value))
+        } />
+        <label for="user-cols">Columns</label>
+        {/* <input id="user-difficulty" type="range" min="1" max="3" value={cols} onChange={
+          (event) => setCols(parseInt(event.currentTarget.value))
+        } />
+        <label for="user-difficulty">Difficulty</label> */}
+
+      </form>
+      <MineSweeper numRows={rows} numCols={cols} />
     </div>
   )
 }

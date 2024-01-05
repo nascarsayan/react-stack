@@ -35,3 +35,16 @@
   width: 35px;
   line-height: 35px;
 }
+
+#user-cols, #user-rows {
+  margin: 0 1em;
+  width: 3em;
+  padding: 0.5em;
+}
+
+.board-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0;
+}
