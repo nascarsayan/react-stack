@@ -8,3 +8,7 @@ npm install
 npm run dev
 ```
 
+Install the following VSCode extensions:
+
+1. REST Client
+2. Prisma
