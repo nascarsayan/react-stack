@@ -11,6 +11,33 @@ type Cell = {
   isFlagged: boolean
 }
 
+// Custom hook
+const useTimer = () => {
+  const startTime = 0
+
+  const [paused, setPaused] = useState<boolean>(false)
+
+  const [timer, setTimer] = useState<number>(0)
+  useEffect(() => {
+    let interval = setInterval(() => {
+      if (paused) return
+      setTimer((currTime) => currTime + 1)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [timer])
+
+  function resetTimer() {
+    setTimer(startTime)
+    setPaused(false)
+  }
+
+  function pauseTimer() {
+    setPaused(true)
+  }
+
+  return [timer, resetTimer, pauseTimer] as const
+}
 
 // MineSweeper is a JSX component
 function MineSweeper(_: PathProps) {
@@ -18,7 +45,7 @@ function MineSweeper(_: PathProps) {
 
   const [isGameDone, setIsGameDone] = useState<boolean>(false)
 
-  const [timer, setTimer] = useState<number>(0)
+  const [timer, resetTimer, pauseTimer] = useTimer()
 
   const { rows: numRows, cols: numCols, difficulty } = useContext(GameContext)
 
@@ -26,15 +53,6 @@ function MineSweeper(_: PathProps) {
     createBoard()
   }, [ numCols, numRows, difficulty ])
   
-  useEffect(() => {
-    if (isGameDone) return;
-
-    let interval = setInterval(() => {
-      setTimer((currTime) => currTime + 1)
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [timer, isGameDone])
 
   function getMineCells() {
 
@@ -121,7 +139,7 @@ function MineSweeper(_: PathProps) {
     }
 
     setBoard(newBoard)
-    setTimer(0)
+    resetTimer()
   }
 
   // Flood fill algorithm
@@ -181,6 +199,7 @@ function MineSweeper(_: PathProps) {
       // }
 
       setIsGameDone(true);
+      pauseTimer();
     } else {
       if (newBoard[i][j].mineCount == 0) {
         revealRecursive(i, j, newBoard)
@@ -194,6 +213,7 @@ function MineSweeper(_: PathProps) {
     if (hasWon) {
       alert(`You've won! 🎉 in ${timer} seconds`)
       setIsGameDone(true)
+      pauseTimer()
     }
 
     setBoard(newBoard)
