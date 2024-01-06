@@ -18,11 +18,23 @@ function MineSweeper(_: PathProps) {
 
   const [isGameDone, setIsGameDone] = useState<boolean>(false)
 
+  const [timer, setTimer] = useState<number>(0)
+
   const { rows: numRows, cols: numCols, difficulty } = useContext(GameContext)
 
   useEffect(() => {
     createBoard()
   }, [ numCols, numRows, difficulty ])
+  
+  useEffect(() => {
+    if (isGameDone) return;
+
+    let interval = setInterval(() => {
+      setTimer((currTime) => currTime + 1)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [timer, isGameDone])
 
   function getMineCells() {
 
@@ -109,6 +121,7 @@ function MineSweeper(_: PathProps) {
     }
 
     setBoard(newBoard)
+    setTimer(0)
   }
 
   // Flood fill algorithm
@@ -179,7 +192,7 @@ function MineSweeper(_: PathProps) {
 
     let hasWon = isGameWon(newBoard)
     if (hasWon) {
-      alert("You've won! 🎉")
+      alert(`You've won! 🎉 in ${timer} seconds`)
       setIsGameDone(true)
     }
 
@@ -246,6 +259,9 @@ function MineSweeper(_: PathProps) {
           )
         )
       }
+      <div className="timer">
+        {timer}
+      </div>
       <button onClick={createBoard}>Reset</button>
       <button>
         <a href="/">Home</a>
