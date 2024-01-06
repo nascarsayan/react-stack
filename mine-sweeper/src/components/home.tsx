@@ -3,7 +3,16 @@ import { Difficulty, GameContext, PathProps } from "../util/types"
 
 export function Home(_: PathProps) {
 
-  const { rows, setRows, cols, setCols, difficulty, setDifficulty } = useContext(GameContext)
+  const {
+    rows,
+    setRows,
+    cols,
+    setCols,
+    difficulty,
+    setDifficulty,
+    userName,
+    setUserName,
+  } = useContext(GameContext)
 
   return (
     <form class="board-form">
@@ -27,6 +36,11 @@ export function Home(_: PathProps) {
         <option value="medium" >Medium</option>
         <option value="hard" >Hard</option>
       </select>
+
+      <input type="text" value={userName} id="user-name" onChange={
+        (event) => setUserName(event.currentTarget.value)
+      } />
+      <label for="user-name">User Name</label>
 
       <a href="/game">Start Game</a>
 

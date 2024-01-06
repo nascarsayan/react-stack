@@ -10,11 +10,12 @@ export function App() {
 
   const [rows, setRows] = useState<number>(4)
   const [cols, setCols] = useState<number>(6)
+  const [userName, setUserName] = useState<string>("")
 
   const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.easy)
 
   const contextValue = {
-    rows, setRows, cols, setCols, difficulty, setDifficulty
+    rows, setRows, cols, setCols, difficulty, setDifficulty, userName, setUserName
   }
 
   return (

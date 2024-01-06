@@ -25,6 +25,8 @@ export type GameContextType = {
   setCols: (cols: number) => void
   difficulty: Difficulty
   setDifficulty: (difficulty: Difficulty) => void
+  userName: string
+  setUserName: (userName: string) => void
 }
 
 export const GameContext = createContext<GameContextType>({
@@ -34,5 +36,7 @@ export const GameContext = createContext<GameContextType>({
   setCols: (_: number) => { },
   difficulty: Difficulty.easy,
   setDifficulty: (_: Difficulty) => { },
+  userName: "",
+  setUserName: (_: string) => { }
 })
 
