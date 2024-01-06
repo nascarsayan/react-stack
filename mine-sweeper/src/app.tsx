@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'preact/hooks';
 
 import './app.css'
 import { createContext } from 'preact';
+import Router from 'preact-router';
 
 type Cell = {
   isMine: boolean
@@ -12,7 +13,7 @@ type Cell = {
 
 
 // MineSweeper is a JSX component
-function MineSweeper() {
+function MineSweeper(_: PathProps) {
   const [board, setBoard] = useState<Array<Array<Cell>>>([])
 
   const [isGameDone, setIsGameDone] = useState<boolean>(false)
@@ -245,6 +246,10 @@ function MineSweeper() {
           )
         )
       }
+      <button onClick={createBoard}>Reset</button>
+      <button>
+        <a href="/">Home</a>
+      </button>
     </>
   )
 }
@@ -255,7 +260,11 @@ enum Difficulty {
   hard = "hard"
 }
 
-function Home() {
+type PathProps = {
+  path: string
+}
+
+function Home(_: PathProps) {
 
   const { rows, setRows, cols, setCols, difficulty, setDifficulty } = useContext(GameContext)
 
@@ -281,6 +290,8 @@ function Home() {
         <option value="medium" >Medium</option>
         <option value="hard" >Hard</option>
       </select>
+
+      <a href="/game">Start Game</a>
 
     </form>
   )
@@ -318,8 +329,10 @@ export function App() {
   return (
     <div id="app">
       <GameContext.Provider value={contextValue}>
-        <Home/>
-        <MineSweeper/>
+        <Router>
+          <Home path="/" />
+          <MineSweeper path="/game" />
+        </Router>
       </GameContext.Provider>
     </div>
   )
