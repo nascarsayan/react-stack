@@ -56,3 +56,10 @@ erDiagram
 ```sh
 json-server mock-backend/data.json -H 0.0.0.0
 ```
+
+### Create a Fastify boilerplate app using the CLI
+
+```sh
+npm i -g fastify-cli
+fastify generate minesweeper-api --lang=ts
+```
