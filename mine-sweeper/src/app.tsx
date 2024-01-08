@@ -30,6 +30,12 @@ export function App() {
   return (
     <div id="app">
       <GameContext.Provider value={contextValue}>
+        <nav>
+          <span><a href="/">Home</a></span>
+          <span><a href="/login">Login</a></span>
+          <span><a href="/register">Register</a></span>
+          <span><a href="/game">Game</a></span>
+        </nav>
         <Router>
           <Home path="/" />
           <Login path="/login" />

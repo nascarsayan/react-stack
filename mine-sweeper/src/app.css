@@ -54,3 +54,12 @@
   align-items: center;
   margin: 1em 0;
 }
+
+#app nav {
+  display: flex;
+  justify-content: center;
+}
+
+#app nav span {
+  margin: 0 4px;
+}
