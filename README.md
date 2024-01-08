@@ -54,5 +54,5 @@ erDiagram
 ### Start Mock API
 
 ```sh
-json-server mock-backend/db.json
+json-server mock-backend/data.json -H 0.0.0.0
 ```

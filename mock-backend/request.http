@@ -26,3 +26,8 @@ Content-Type: application/json
   "userId": "2",
   "boardId": "1"
 }
+
+###
+
+OPTIONS http://localhost:3000/games
+
