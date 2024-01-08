@@ -1,0 +1,28 @@
+GET http://localhost:3000/users/1
+
+###
+
+GET http://localhost:3000/boards/1
+
+###
+
+GET http://localhost:3000/games/1
+
+###
+
+GET http://localhost:3000/games
+
+###
+
+# Create a game
+
+POST http://localhost:3000/games
+Content-Type: application/json
+
+{
+  "id": "5",
+  "durationSeconds": 120,
+  "startedAt": "2020-01-01T12:00:00Z",
+  "userId": "2",
+  "boardId": "1"
+}
