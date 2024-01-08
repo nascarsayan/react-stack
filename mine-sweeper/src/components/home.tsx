@@ -10,8 +10,6 @@ export function Home(_: PathProps) {
     setCols,
     difficulty,
     setDifficulty,
-    userName,
-    setUserName,
   } = useContext(GameContext)
 
   return (
@@ -36,11 +34,6 @@ export function Home(_: PathProps) {
         <option value="medium" >Medium</option>
         <option value="hard" >Hard</option>
       </select>
-
-      <input type="text" value={userName} id="user-name" onChange={
-        (event) => setUserName(event.currentTarget.value)
-      } />
-      <label for="user-name">User Name</label>
 
       <a href="/game">Start Game</a>
 

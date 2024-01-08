@@ -18,6 +18,11 @@ export type Cell = {
   isFlagged: boolean
 }
 
+export type User = {
+  name: string
+  username: string
+}
+
 export type GameContextType = {
   rows: number
   setRows: (rows: number) => void
@@ -25,8 +30,10 @@ export type GameContextType = {
   setCols: (cols: number) => void
   difficulty: Difficulty
   setDifficulty: (difficulty: Difficulty) => void
-  userName: string
-  setUserName: (userName: string) => void
+  currentUser: User | null
+  setCurrentUser: (user: User | null) => void,
+  allUsers: User[]
+  setAllUsers: (users: User[]) => void
 }
 
 export const GameContext = createContext<GameContextType>({
@@ -36,7 +43,9 @@ export const GameContext = createContext<GameContextType>({
   setCols: (_: number) => { },
   difficulty: Difficulty.easy,
   setDifficulty: (_: Difficulty) => { },
-  userName: "",
-  setUserName: (_: string) => { }
+  currentUser: null,
+  setCurrentUser: (_: User | null) => { },
+  allUsers: [],
+  setAllUsers: (_: User[]) => { }
 })
 
