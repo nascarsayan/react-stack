@@ -1,18 +1,20 @@
 import { useContext, useState } from 'preact/hooks';
 import { GameContext, PathProps } from '../util/types';
 
+import { route } from 'preact-router';
+
 export const Register = (_: PathProps) => {
   const [fullName, setFullName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const {
-    allUsers,
-    setAllUsers,
-  } = useContext(GameContext)
+  // const {
+  //   allUsers,
+  //   setAllUsers,
+  // } = useContext(GameContext)
 
-  const handleRegister = (event: Event) => {
+  const handleRegister = async (event: Event) => {
     event.preventDefault();
 
     console.log(`Registering user:${fullName} with username:${username} and password:${password}`)
@@ -24,7 +26,26 @@ export const Register = (_: PathProps) => {
       username: username
     }
 
-    setAllUsers([...allUsers, newUser])
+    // send POST request to localhost:3000/users to create the user.
+
+    try {
+      const response = await fetch(
+        'http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newUser)
+      });
+
+      const data = await response.json();
+      console.log(data);
+      route('/login');
+    } catch (error) {
+      console.dir(error);
+    }
+
+    // setAllUsers([...allUsers, newUser])
   };
 
   return (

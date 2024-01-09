@@ -7,21 +7,44 @@ export const Login = (_: PathProps) => {
 
   const {
     setCurrentUser,
-    allUsers,
   } = useContext(GameContext)
 
-  const handleLogin = (event: Event) => {
+  const handleLogin = async (event: Event) => {
     event.preventDefault();
 
     console.log(`Logging in user:${username} with password:${password}`)
 
-    // Check if allUsers contains a user with the given username
-    const user = allUsers.find((user) => user.username === username)
+    try {
+      // send GET request to localhost:3000/users to get all the users.
 
-    if (user) {
-      setCurrentUser(user)
-    } else {
-      alert("User not found")
+      const response = await fetch(
+        'http://localhost:3000/users', {
+        method: 'GET'
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      type UserDto = {
+        id: string;
+        name: string;
+        username: string;
+      }
+
+      const users = data as UserDto[];
+
+      const currentUser = users.find(
+        user => user.username === username);
+
+      if (!currentUser) {
+        alert('User not found');
+        return;
+      }
+
+      setCurrentUser(currentUser);
+
+    } catch (error) {
+      console.dir(error);
     }
   }
 

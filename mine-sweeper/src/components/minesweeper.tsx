@@ -10,7 +10,7 @@ export function MineSweeper(_: PathProps) {
 
   const [timer, resetTimer, pauseTimer] = useTimer()
 
-  const { rows: numRows, cols: numCols, difficulty } = useContext(GameContext)
+  const { rows: numRows, cols: numCols, difficulty, currentUser } = useContext(GameContext)
 
   useEffect(() => {
     createBoard()
@@ -133,7 +133,7 @@ export function MineSweeper(_: PathProps) {
     return true
   }
 
-  function handleCellClick(event: MouseEvent, i: number, j: number) {
+  async function handleCellClick(event: MouseEvent, i: number, j: number) {
     event.preventDefault();
 
     if (event.button == 2) {
@@ -172,11 +172,60 @@ export function MineSweeper(_: PathProps) {
 
     newBoard[i][j].isRevealed = true
 
+    let difficultyToInt = (difficulty: Difficulty) => {
+      switch (difficulty) {
+        case Difficulty.easy:
+          return 1;
+        case Difficulty.medium:
+          return 2;
+        case Difficulty.hard:
+          return 3;
+        default:
+          return -1;
+      }
+    }
+
     let hasWon = isGameWon(newBoard)
     if (hasWon) {
       alert(`You've won! 🎉 in ${timer} seconds`)
       setIsGameDone(true)
       pauseTimer()
+
+      if (!currentUser) {
+        alert('Please login to save your score')
+        return
+      }
+
+      const getStartTimeFromDuration = (durationSecs: number) => {
+        const date = new Date();
+        // reduce the duration from the current date
+        date.setSeconds(date.getSeconds() - durationSecs);
+        return date.toISOString();
+      }
+
+      try {
+      // save the scores to the backend
+        const response = await fetch(
+          'http://localhost:3000/games', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            boardWidth: numCols,
+            boardHeight: numRows,
+            difficulty: difficultyToInt(difficulty),
+            userId: currentUser.id,
+            durationSeconds: timer,
+            startedAt: getStartTimeFromDuration(timer)
+          })
+        });
+
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.dir(error);
+      }
     }
 
     setBoard(newBoard)

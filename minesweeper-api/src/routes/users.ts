@@ -24,13 +24,22 @@ let users: User[] = [
   }
 ];
 
+interface CreateUserDto {
+  username: string;
+  name: string;
+}
+
 const route: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.get('/users', async (request, reply) => {
     return users;
   });
 
   fastify.post('/users', async (request, reply) => {
-    const user = request.body as User;
+    const userBody = request.body as CreateUserDto;
+    const user: User = {
+      id: (users.length + 1).toString(),
+      ...userBody
+    };
     users.push(user);
     return user;
   });
