@@ -1,0 +1,23 @@
+POST http://localhost:3000/games
+Content-Type: application/json
+
+{
+  "boardWidth": 20,
+  "boardHeight": 20,
+  "difficulty": 1,
+  "userId": "3",
+  "durationSeconds": 120,
+  "startedAt": "2024-01-09T12:00:00.000Z"
+}
+
+###
+
+GET http://localhost:3000/boards
+
+###
+
+GET http://localhost:3000/users
+
+###
+
+GET http://localhost:3000/example
