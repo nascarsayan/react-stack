@@ -62,4 +62,18 @@ json-server mock-backend/data.json -H 0.0.0.0
 ```sh
 npm i -g fastify-cli
 fastify generate minesweeper-api --lang=ts
+
+npm i @fastify/cors
+npm i prisma --save-dev
+
+npx prisma init --datasource-provider sqlite
+
+# Add your models and relations in schema.prisma
+
+npx prisma migrate dev --name init
+
+# Optional : Install SQLTools extension in VSCode. Install sqlite3 driver in SQLTools.
+
+npx prisma studio # View, edit and test your data
+
 ```

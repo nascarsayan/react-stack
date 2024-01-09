@@ -63,3 +63,8 @@ test/types/index.js
 
 # compiled app
 dist
+
+# db
+prisma/*.db
+prisma/*.db-journal
+prisma/migrations
