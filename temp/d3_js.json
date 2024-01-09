@@ -1,0 +1,162 @@
+[
+    {
+        "question": "Which of the following is a lightweight alternative to React known for its small size and performance?",
+        "options": [
+            "Preact",
+            "Vite",
+            "useState",
+            "React Router"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What is a popular build tool known for its fast startup and development experience?",
+        "options": [
+            "Webpack",
+            "Parcel",
+            "rollup",
+            "Vite"
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "question": "Which hook is used to manage state within a functional component?",
+        "options": [
+            "useState",
+            "useEffect",
+            "useContext",
+            "useReducer"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Which hook is used to perform side effects in functional components?",
+        "options": [
+            "useState",
+            "useEffect",
+            "useCallback",
+            "useMemo"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What is the purpose of the dependency array in the useEffect hook?",
+        "options": [
+            "To pass data to the effect",
+            "To trigger a re-render",
+            "To control when the effect runs",
+            "To prevent infinite loops"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "What is a programming technique where a function calls itself directly or indirectly?",
+        "options": [
+            "Iteration",
+            "Recursion",
+            "Memoization",
+            "Composition"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Which of the following is a way to style React components directly within JSX?",
+        "options": [
+            "CSS Modules",
+            "Styled Components",
+            "Sass",
+            "Inline styles"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What are hooks in React?",
+        "options": [
+            "A way to organize components",
+            "Functions that let you use state and other React features without writing class",
+            "A feature for performance optimization",
+            "A way to handle routing"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What is the purpose of the 'dependencies' array in the useEffect hook?",
+        "options": [
+            "To specify when the effect should re-run",
+            "To pass data to the effect",
+            "To delay the execution of the effect",
+            "To prevent infinite loops"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Which of the following is a common use case for the useEffect hook?",
+        "options": [
+            "Fetching data from an API",
+            "Setting up subscriptions",
+            "Manually changing the DOM",
+            "All of the above"
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "question": "What is the difference between useState and useReducer?",
+        "options": [
+            "useReducer is for more complex state logic",
+            "useState is for simple state updates",
+            "useReducer is better for performance",
+            "useState is easier to use"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What is a pure function in JavaScript?",
+        "options": [
+            "A function that does not have any side effects",
+            "A function that does not take any arguments",
+            "A function that always returns the same result given the same arguments",
+            "Both A and C"
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "question": "What is the purpose of the 'key' prop in React?",
+        "options": [
+            "To identify components in the DOM",
+            "To improve performance by helping React identify which items have changed",
+            "To pass data to a component",
+            "None of the above"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "How does Preact compare to React in terms of performance?",
+        "options": [
+            "Preact is generally faster",
+            "React has better performance in certain cases",
+            "There is no significant difference",
+            "It depends on the specific use case"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What are some of the benefits of using Vite for development?",
+        "options": [
+            "Faster startup times",
+            "Hot module replacement",
+            "Smaller bundle sizes",
+            "All of the above"
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "question": "What are the various steps happening to convert the preact-ts project into a production build?",
+        "options": [
+            "Transpiling TypeScript to JavaScript",
+            "Bundling the JavaScript files",
+            "Minifying the bundled JavaScript",
+            "All of the above"
+        ],
+        "correctAnswer": 3
+    }
+]

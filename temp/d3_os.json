@@ -1,0 +1,232 @@
+  [
+    {
+      "question": "What is a thread in the context of computer programming?",
+      "options": [
+        "A physical component of a CPU",
+        "A virtual sequence of instructions",
+        "A type of data storage",
+        "A protocol for network communication"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is multithreading?",
+      "options": [
+        "Running multiple processes simultaneously",
+        "Executing multiple threads within a single process",
+        "A technique for optimizing memory usage",
+        "A way to increase network bandwidth"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which of the following storage devices typically has the fastest access speed?",
+      "options": [
+        "Hard disk drive (HDD)",
+        "Solid-state drive (SSD)",
+        "Cache memory",
+        "Optical disk"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is synchronization in the context of multithreading?",
+      "options": [
+        "Coordinating the execution of multiple threads to ensure data consistency",
+        "Improving the performance of threads by reducing context switching",
+        "Preventing threads from accessing shared resources simultaneously",
+        "A technique for debugging multithreaded applications"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What is the reader-writer problem?",
+      "options": [
+        "A synchronization problem where multiple readers and writers access a shared resource",
+        "A deadlock situation that can occur in multithreaded applications",
+        "A race condition that can lead to data corruption",
+        "A security vulnerability in multithreaded systems"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What is a mutex?",
+      "options": [
+        "A type of synchronization object that allows only one thread to access a shared resource at a time",
+        "A technique for preventing deadlocks",
+        "A way to prioritize threads",
+        "A tool for debugging multithreaded applications"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What is a semaphore?",
+      "options": [
+        "A type of synchronization object that controls access to a shared resource by a limited number of threads",
+        "A technique for preventing race conditions",
+        "A way to improve the performance of multithreaded applications",
+        "A tool for profiling multithreaded code"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "When would you use a mutex over a semaphore?",
+      "options": [
+        "When you need to ensure exclusive access to a shared resource",
+        "When you want to prevent starvation of threads",
+        "When you need to prioritize threads",
+        "When you are debugging a multithreaded application"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What are some common challenges in multithreaded programming?",
+      "options": [
+        "Synchronization, deadlocks, race conditions",
+        "Memory leaks, security vulnerabilities, performance bottlenecks",
+        "Debugging, testing, deployment issues",
+        "All of the above"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "How can you improve the performance of multithreaded applications?",
+      "options": [
+        "Using more threads, using faster hardware",
+        "Optimizing algorithms, reducing synchronization overhead",
+        "Profiling code, identifying bottlenecks",
+        "All of the above"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "Which of the following is a potential consequence of poor synchronization in multithreaded applications?",
+      "options": [
+        "Security vulnerabilities",
+        "Memory leaks",
+        "Race conditions",
+        "All of the above"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "What is the purpose of context switching in multithreading?",
+      "options": [
+        "To allow multiple threads to run on a single CPU core",
+        "To improve the performance of threads by reducing cache misses",
+        "To prevent threads from accessing shared resources simultaneously",
+        "To debug multithreaded applications"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which of the following storage devices typically has the highest capacity?",
+      "options": [
+        "Hard disk drive (HDD)",
+        "Solid-state drive (SSD)",
+        "Cache memory",
+        "Optical disk"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Why is synchronization important in databases?",
+      "options": [
+        "To ensure data consistency",
+        "To improve performance",
+        "To prevent deadlocks",
+        "To protect against security vulnerabilities"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What is a deadlock in the context of multithreading?",
+      "options": [
+        "A situation where multiple threads are waiting for each other to release resources",
+        "A race condition that can lead to data corruption",
+        "A security vulnerability in multithreaded systems",
+        "A technique for debugging multithreaded applications"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What is the difference between a mutex and a semaphore?",
+      "options": [
+        "A mutex is used to prevent deadlocks, while a semaphore is used to prevent race conditions",
+        "A mutex is a software construct, while a semaphore is a hardware construct",
+        "A mutex allows only one thread to access a shared resource at a time, while a semaphore allows multiple threads to access it",
+        "A mutex is faster than a semaphore"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What are some common techniques for synchronization in multithreaded programming?",
+      "options": [
+        "Mutexes, semaphores, monitors",
+        "Condition variables, barriers, critical sections",
+        "Message passing, locking, thread pools",
+        "All of the above"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "How can you identify synchronization problems in multithreaded applications?",
+      "options": [
+        "Debugging, profiling, testing",
+        "Using static analysis tools",
+        "Monitoring thread behavior",
+        "All of the above"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "What are some of the challenges of multithreaded programming?",
+      "options": [
+        "Synchronization, deadlocks, race conditions",
+        "Debugging, testing, deployment issues",
+        "Performance optimization, hardware limitations",
+        "All of the above"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "What is the function of ARP (Address Resolution Protocol) in a network?",
+      "options": [
+        "Encrypts data traffic",
+        "Manages network devices",
+        "Translates IP addresses to MAC addresses",
+        "Routes data packets across networks"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the primary difference between a network hub and a network switch?",
+      "options": [
+        "Switches connect to networks while hubs connect devices",
+        "Switches are smarter and learn device locations while hubs broadcast data blindly",
+        "Hubs are faster than switches",
+        "Switches are more expensive than hubs"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What type of cable is typically used to connect a device to a network hub or switch?",
+      "options": [
+        "Coaxial cable",
+        "Fiber optic cable",
+        "Telephone cable",
+        "Ethernet cable"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "What is the main benefit of using a network switch over a hub?",
+      "options": [
+        "Reduced broadcast traffic",
+        "Faster data transfer speeds",
+        "Enhanced security",
+        "All of the above"
+      ],
+      "correctAnswer": 3
+    }
+  ]
