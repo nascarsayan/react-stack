@@ -77,3 +77,33 @@ npx prisma migrate dev --name init
 npx prisma studio # View, edit and test your data
 
 ```
+
+### Benchmarking
+
+[Golang + Fiber](./test-api/minesweeper-go/)
+
+```
+  50%    336
+  66%    339
+  75%    341
+  80%    343
+  90%    351
+  95%    355
+  98%    362
+  99%    370
+ 100%    466 (longest request)
+```
+
+[Fastify + Node.js](./minesweeper-api/)
+
+```
+  50%    344
+  66%    348
+  75%    350
+  80%    352
+  90%    356
+  95%    364
+  98%    375
+  99%    382
+ 100%    415 (longest request)
+```

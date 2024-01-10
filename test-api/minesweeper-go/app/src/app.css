@@ -1,0 +1,65 @@
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.preact:hover {
+  filter: drop-shadow(0 0 2em #673ab8aa);
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.row {
+  display: flex;
+  /* cursor: pointer; */
+}
+
+.cell {
+  border: 1px solid #ccc;
+  height: 35px;
+  width: 35px;
+  line-height: 35px;
+}
+
+#user-cols, #user-rows {
+  margin: 0 1em;
+  width: 3em;
+  padding: 0.5em;
+}
+
+#user-difficulty {
+  margin: 0 1em;
+  width: 7em;
+  padding: 0.5em;
+}
+
+.board-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0;
+}
+
+#app nav {
+  display: flex;
+  justify-content: center;
+}
+
+#app nav span {
+  margin: 0 4px;
+}

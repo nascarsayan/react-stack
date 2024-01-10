@@ -1,0 +1,48 @@
+GET http://localhost:3030/
+
+###
+
+POST http://localhost:3030/api/games
+Content-Type: application/json
+
+{
+  "boardWidth": 20,
+  "boardHeight": 20,
+  "difficulty": 1,
+  "userId": 1,
+  "durationSeconds": 120,
+  "startedAt": "2024-01-09T12:00:00.000Z"
+}
+
+###
+
+POST http://localhost:3030/api/users
+Content-Type: application/json
+
+{
+  "username": "murphy",
+  "name": "Todd Murphy"
+}
+
+###
+
+GET http://localhost:3030/api/games
+
+###
+
+GET http://localhost:3030/api/users/username/abc
+
+###
+
+GET http://localhost:3000/example
+
+###
+
+POST http://localhost:3000/boards
+Content-Type: application/json
+
+{
+  "width": 20,
+  "height": 20,
+  "difficulty": 1
+}

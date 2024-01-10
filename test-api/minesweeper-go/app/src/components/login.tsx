@@ -1,5 +1,5 @@
 import { useContext, useState } from 'preact/hooks';
-import { GameContext, PathProps } from '../util/types';
+import { BackendUrl, GameContext, PathProps } from '../util/types';
 
 export const Login = (_: PathProps) => {
   const [username, setUsername] = useState('');
@@ -15,14 +15,13 @@ export const Login = (_: PathProps) => {
     console.log(`Logging in user:${username} with password:${password}`)
 
     try {
-      // send GET request to localhost:3000/users to get all the users.
+      // send GET request to localhost:3000/api/users/username/:username
 
       const response = await fetch(
-        'http://localhost:3000/users', {
+        `${BackendUrl}/api/users/username/${username}`, {
         method: 'GET'
       });
 
-      // TODO: Use findUserById instead of querying all users.
       const data = await response.json();
       console.log(data);
 
@@ -32,17 +31,8 @@ export const Login = (_: PathProps) => {
         username: string;
       }
 
-      const users = data as UserDto[];
-
-      const currentUser = users.find(
-        user => user.username === username);
-
-      if (!currentUser) {
-        alert('User not found');
-        return;
-      }
-
-      setCurrentUser(currentUser);
+      const user = data as UserDto;
+      setCurrentUser(user);
 
     } catch (error) {
       console.dir(error);
