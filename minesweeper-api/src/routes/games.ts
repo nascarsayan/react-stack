@@ -63,6 +63,28 @@ const route: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       console.error(error);
     }
   });
+
+  fastify.get('/top-scores', async (request, reply) => {
+    const topScores = await fastify.prisma.game.findMany({
+      include: {
+        board: true,
+        user: true
+      },
+      orderBy: [
+        {
+          board: {
+            difficulty: 'asc'
+          }
+        },
+        {
+          durationSeconds: 'asc'
+        },
+      ],
+      take: 10
+    });
+
+    return topScores;
+  })
 }
 
 export default route;
