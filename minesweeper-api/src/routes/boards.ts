@@ -12,8 +12,8 @@ const route: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     return boards;
   });
 
-  fastify.post('/boards', async (request, reply) => {
-    const board = request.body as CreateBoardDto;
+  fastify.post<{ Body: CreateBoardDto }>('/boards', async (request, reply) => {
+    const board = request.body;
     const newBoard = await fastify.prisma.board.create({ data: board });
     return newBoard;
   });

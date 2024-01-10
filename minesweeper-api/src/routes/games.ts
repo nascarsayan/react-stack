@@ -18,8 +18,8 @@ const route: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     return games;
   });
 
-  fastify.post('/games', async (request, reply) => {
-    const game = request.body as CreateGameDto;
+  fastify.post<{ Body: CreateGameDto }>('/games', async (request, reply) => {
+    const game = request.body;
     
     const board = {
       width: game.boardWidth,

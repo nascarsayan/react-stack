@@ -1,3 +1,17 @@
+### 
+# Create User
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "murphy",
+  "name": "Todd Murphy"
+}
+
+###
+# Create Game
+
 POST http://localhost:3000/games
 Content-Type: application/json
 
@@ -11,23 +25,31 @@ Content-Type: application/json
 }
 
 ###
+# Create board
 
-POST http://localhost:3000/users
+POST http://localhost:3000/boards
 Content-Type: application/json
 
 {
-  "username": "murphy",
-  "name": "Todd Murphy"
+  "width": 20,
+  "height": 20,
+  "difficulty": 1
 }
 
+
 ###
+# Get all boards
 
 GET http://localhost:3000/boards
 
 ###
+# Get all users
 
 GET http://localhost:3000/users
 
 ###
+# Get all games
 
-GET http://localhost:3000/example
+GET http://localhost:3000/games
+
+###
