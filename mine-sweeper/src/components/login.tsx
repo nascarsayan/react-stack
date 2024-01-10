@@ -26,7 +26,7 @@ export const Login = (_: PathProps) => {
       console.log(data);
 
       type UserDto = {
-        id: string;
+        id: number;
         name: string;
         username: string;
       }

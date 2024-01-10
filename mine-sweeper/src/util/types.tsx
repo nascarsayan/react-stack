@@ -19,7 +19,7 @@ export type Cell = {
 }
 
 export type User = {
-  id: string
+  id: number
   name: string
   username: string
 }

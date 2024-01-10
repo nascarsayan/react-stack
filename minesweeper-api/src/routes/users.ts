@@ -1,29 +1,5 @@
 import { FastifyPluginAsync } from "fastify"
 
-interface User {
-  id: string;
-  username: string;
-  name: string;
-}
-
-let users: User[] = [
-  {
-    "id": "1",
-    "username": "bob",
-    "name": "Bob Smith"
-  },
-  {
-    "id": "2",
-    "username": "jane",
-    "name": "Jane Doe"
-  },
-  {
-    "id": "3",
-    "username": "alice",
-    "name": "Alice Jones"
-  }
-];
-
 interface CreateUserDto {
   username: string;
   name: string;
@@ -31,17 +7,26 @@ interface CreateUserDto {
 
 const route: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.get('/users', async (request, reply) => {
+    const users = await fastify.prisma.user.findMany();
     return users;
   });
 
-  fastify.post('/users', async (request, reply) => {
-    const userBody = request.body as CreateUserDto;
-    const user: User = {
-      id: (users.length + 1).toString(),
-      ...userBody
-    };
-    users.push(user);
+  interface GetUserParams {
+    id: string;
+  }
+  fastify.get('/users/:id', async (request, reply) => {
+    const { id } = request.params as GetUserParams;
+    const user = await fastify.prisma.user.findUnique({
+      where: { id: Number(id) }
+    });
     return user;
+  });
+
+  fastify.post('/users', async (request, reply) => {
+    const user = request.body as CreateUserDto;
+    const newUser = await fastify.prisma.user.create({ data: user });
+
+    return newUser;
   });
 }
 

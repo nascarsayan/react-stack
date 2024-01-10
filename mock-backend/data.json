@@ -1,36 +1,36 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "username": "bob",
       "name": "Bob Smith"
     },
     {
-      "id": "2",
+      "id": 2,
       "username": "jane",
       "name": "Jane Doe"
     },
     {
-      "id": "3",
+      "id": 3,
       "username": "alice",
       "name": "Alice Jones"
     }
   ],
   "boards": [
     {
-      "id": "1",
+      "id": 1,
       "width": 5,
       "height": 10,
       "difficulty": 1
     },
     {
-      "id": "2",
+      "id": 2,
       "width": 8,
       "height": 12,
       "difficulty": 2
     },
     {
-      "id": "3",
+      "id": 3,
       "width": 6,
       "height": 10,
       "difficulty": 3
@@ -38,39 +38,39 @@
   ],
   "games": [
     {
-      "id": "1",
+      "id": 1,
       "durationSeconds": 120,
       "startedAt": "2020-01-01T12:00:00Z",
-      "userId": "bob",
-      "boardId": "1"
+      "userId": 1,
+      "boardId": 1
     },
     {
-      "id": "2",
+      "id": 2,
       "durationSeconds": 180,
       "startedAt": "2020-01-01T12:00:00Z",
-      "userId": "jane",
-      "boardId": "2"
+      "userId": 2,
+      "boardId": 2
     },
     {
-      "id": "3",
+      "id": 3,
       "durationSeconds": 300,
       "startedAt": "2020-01-01T12:00:00Z",
-      "userId": "alice",
-      "boardId": "3"
+      "userId": 3,
+      "boardId": 3
     },
     {
       "id": "4",
       "durationSeconds": 120,
       "startedAt": "2020-01-01T12:00:00Z",
-      "userId": "bob",
-      "boardId": "1"
+      "userId": 1,
+      "boardId": 1
     },
     {
       "id": "5",
       "durationSeconds": 120,
       "startedAt": "2020-01-01T12:00:00Z",
-      "userId": "2",
-      "boardId": "1"
+      "userId": 2,
+      "boardId": 1
     }
   ]
 }
