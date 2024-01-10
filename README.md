@@ -78,11 +78,13 @@ npx prisma studio # View, edit and test your data
 
 ```
 
-### Benchmarking
+### Benchmarking (apache benchmark)
 
 [Golang + Fiber](./test-api/minesweeper-go/)
 
 ```
+$ ab -n 10000 -c 100 http://0.0.0.0:3030/api/games
+
   50%    336
   66%    339
   75%    341
@@ -97,6 +99,8 @@ npx prisma studio # View, edit and test your data
 [Fastify + Node.js](./minesweeper-api/)
 
 ```
+$ ab -n 10000 -c 100 http://0.0.0.0:3000/games
+
   50%    344
   66%    348
   75%    350
